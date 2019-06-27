@@ -1,9 +1,8 @@
 <?php
-
-$dbh = new PDO("pgsql:host=127.0.0.1:8000; dbname=crud", "postgres", '141592',  array(\PDO::PGSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-$stm = $dbh -> query("SELECT * FROM article");
-$stm->execute( );
-$data = $stm -> fetchAll( );
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+$dbh = new PDO("pgsql:host=127.0.0.1;port=5432;dbname=crud;user=postgres;password=141592");
+$stm = $dbh->query("SELECT * FROM article");
 ?>
 
 
@@ -27,7 +26,7 @@ $data = $stm -> fetchAll( );
 
         <tr>
 
-            <td>Name</td> <td>Description</td> <td>Created</td> <td></td>
+            <td>Name</td> <td>Description</td> <td>Created_at</td> <td></td>
 
         </tr>
 
@@ -39,11 +38,11 @@ $data = $stm -> fetchAll( );
 
             <td> <?php echo  $item['name']; ?>  </td>
             <td> <?php echo $item['description']; ?></td>
-            <td> <?php echo $item['created']; ?> </td>
+            <td> <?php echo $item['created_at']; ?> </td>
 
             <td>
-                <a href="Update.php?id=<?php echo $item['id'];?>"> Change</a>
-                <a href="Delete.php?id=<?php echo $item['id'];?>"> Delete</a>
+                <a href="update.php?id=<?php echo $item['id'];?>"> Change</a>
+                <a href="delete.php?id=<?php echo $item['id'];?>"> Delete</a>
 
             </td>
 
@@ -55,7 +54,7 @@ $data = $stm -> fetchAll( );
 
     <br>
 
-    <button name="create" formaction="Create.php" formmethod="post"> Add </button>
+    <button name="create" formaction="create.php" formmethod="post"> Add </button>
 
 </form>
 
