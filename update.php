@@ -12,8 +12,7 @@ if(isset($_GET['id'])) {
     $stmt->execute();
     $result = $stmt->fetchAll();
 
-    foreach ($result as $item)
-        $title = $item['name'];
+    $item = $result[0];
 
 }
 
@@ -22,11 +21,13 @@ if (isset($_POST['id'])) {
     if ($_POST['Name'] && $_POST['Description'] && $_POST['Created_at']) {
 
         $dbh = new PDO("pgsql:host=127.0.0.1;port=5432;dbname=crud;user=postgres;password=141592");
-        $stmt = $dbh->prepare("UPDATE article SET name = :name, description = :description, created_at = :created_at) WHERE id = :id");
+        $stmt = $dbh->prepare("UPDATE article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
+
+
         $stmt->bindParam(':name', $_POST['Name']);
         $stmt->bindParam(':description', $_POST['Description']);
         $stmt->bindParam(':created_at', $_POST['Created_at']);
-        $stmt->bindParam(':id', $_POST['id']);
+        $stmt->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -62,7 +63,7 @@ if (isset($_POST['id'])) {
 
         <input type="reset" value="Reset" >
 
-        <button name="chancel" formaction="read.php" > Cansel </button>
+        <button name="chancel" formaction="read.php" > Cancel </button>
 
         <input type="text" name="id"  value="<?php echo $item['id'] ?>" hidden>
 
