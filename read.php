@@ -1,8 +1,11 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
 $dbh = new PDO("pgsql:host=127.0.0.1;port=5432;dbname=crud;user=postgres;password=141592");
 $stm = $dbh->query("SELECT * FROM article");
+
 ?>
 
 
