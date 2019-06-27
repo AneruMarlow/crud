@@ -44,8 +44,8 @@ $stm = $dbh->query("SELECT * FROM article");
             <td> <?php echo $item['created_at']; ?> </td>
 
             <td>
-                <a href="update.php?id=<?php echo $item['id'];?>"> Change</a>
-                <a href="delete.php?id=<?php echo $item['id'];?>"> Delete</a>
+                <a href="update.php?id=<?php echo $item['id'];?>"> Edit </a>
+                <a href="delete.php?id=<?php echo $item['id'];?>"> Delete </a>
 
             </td>
 
