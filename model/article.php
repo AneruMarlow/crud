@@ -1,16 +1,16 @@
 <?php
 
-class article
+class Article
 {
 
-    private function dbh ()    {
+    private function dbh () {
 
         $dbh = new PDO("pgsql:host=127.0.0.1;port=5432;dbname=crud;user=postgres;password=141592");
         return $dbh;
 
     }
 
-    public function create ($name, $description, $created_at)    {
+    public function create ($name, $description, $created_at) {
 
         $sth = ($this->dbh())->prepare ( "INSERT INTO article (name, description, created_at) VALUES (:name, :description, :created_at )");
         $sth->bindParam(':name', $name);
@@ -20,7 +20,7 @@ class article
 
     }
 
-    public function read ()    {
+    public function read () {
 
         $stm = ($this->dbh())->prepare("SELECT * FROM article");
         $stm->execute( );
@@ -28,7 +28,7 @@ class article
 
     }
 
-    public function readid ($id)    {
+    public function readid ($id) {
 
         $stmd = ($this->dbh ())->prepare("SELECT * FROM article WHERE id=:id");
         $stmd->bindParam(':id', $id);
@@ -37,7 +37,7 @@ class article
 
     }
 
-    public function upd ($name, $description, $created_at, $id)    {
+    public function upd ($name, $description, $created_at, $id) {
 
         $stmt = ($this->dbh())->prepare("UPDATE аrticle SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
         $stmt->bindParam(':name', $name);
@@ -48,7 +48,7 @@ class article
 
     }
 
-    public function del ($id)    {
+    public function del ($id) {
 
     $df = ($this->dbh()) -> prepare("DELETE FROM article WHERE id=:id;");
     $df->bindParam(':id', $id);
