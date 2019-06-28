@@ -39,7 +39,7 @@ class article
 
     public function upd ($name, $description, $created_at, $id)    {
 
-        $stmt = ($this->dbh())->prepare("UPDATE article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
+        $stmt = ($this->dbh())->prepare("UPDATE аrticle SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':created_at', $created_at);
@@ -50,7 +50,7 @@ class article
 
     public function del ($id)    {
 
-    $df = ($this->dbh()) -> prepare("DELETE FROM Article WHERE id=:id;");
+    $df = ($this->dbh()) -> prepare("DELETE FROM article WHERE id=:id;");
     $df->bindParam(':id', $id);
     return $df->execute();
 
