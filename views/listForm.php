@@ -25,7 +25,7 @@
 
         <?php
 
-        foreach($stm as $item) { ?>
+        foreach($articles as $item) { ?>
 
             <tr>
 
@@ -47,7 +47,7 @@
 
     <br>
 
-    <button name="create" formaction="create.php" formmethod="post"> Add </button>
+    <button formaction="create.php" formmethod="GET"> Add </button>
 
 </form>
 

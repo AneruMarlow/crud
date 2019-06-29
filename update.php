@@ -12,37 +12,8 @@ if(isset($_GET['id'])) {
     $stmt->execute();
     $result = $stmt->fetchAll();
 
-    $item = $result[0];
-
-}
-
-if (isset($_POST['id'])) {
-
-    if ($_POST['Name'] && $_POST['Description'] && $_POST['Created_at']) {
-
-        $dbh = new PDO("pgsql:host=127.0.0.1;port=5432;dbname=crud;user=postgres;password=141592");
-        $stmt = $dbh->prepare("UPDATE article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
-
-
-        $stmt->bindParam(':name', $_POST['Name']);
-        $stmt->bindParam(':description', $_POST['Description']);
-        $stmt->bindParam(':created_at', $_POST['Created_at']);
-        $stmt->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
-
-        $stmt->execute();
-
-
-    }
-
-    header ( "Location: read.php");
-    exit ( );
-
-}
-
-?>
-
-
-<html>
+    $item = $result[0]; ?>
+    <html>
 
 <head>
 
@@ -74,3 +45,26 @@ if (isset($_POST['id'])) {
 </body>
 
 </html>
+
+<?php }
+
+if (isset($_POST['id'])) {
+
+    if ($_POST['Name'] && $_POST['Description'] && $_POST['Created_at']) {
+
+        $dbh = new PDO("pgsql:host=127.0.0.1;port=5432;dbname=crud;user=postgres;password=141592");
+        $stmt = $dbh->prepare("UPDATE article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
+
+
+        $stmt->bindParam(':name', $_POST['Name']);
+        $stmt->bindParam(':description', $_POST['Description']);
+        $stmt->bindParam(':created_at', $_POST['Created_at']);
+        $stmt->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
+
+        $stmt->execute();
+
+
+    }
+
+    header("Location: MainController.php");
+}

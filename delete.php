@@ -9,6 +9,6 @@ if (isset($_GET['id'])) {
     $df = $dbh -> prepare("DELETE FROM Article WHERE id=:id;");
     $df -> bindParam(':id', $_GET['id'] );
     $df ->execute();
-    header ( "Location: read.php");
+    header ( "Location: MainController.php");
 
 }

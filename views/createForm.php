@@ -6,7 +6,7 @@
 
 </head>
 
-<form action="../create.php" method="post" name="Create" autocomplete="on">
+<form action="../create.php" method="post">
 
     <p> Name <input type="text" name="Name"> </p>
     <p> Description <input type="text" name="Description"></p>
