@@ -8,7 +8,7 @@
 
 <body>
 
-<form action="update.php" method="post" name="Update" autocomplete="on" >
+<form action="../update.php" method="post">
 
     <h1> Enter data</h1>
     <p> Name <input type="text" name="Name" value="<?php echo ($item['name']) ?>" /> </p>

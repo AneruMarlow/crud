@@ -38,12 +38,12 @@ class Article
     }
 
     public function upd ($name, $description, $created_at, $id) {
-
-        $stmt = ($this->dbh())->prepare("UPDATE аrticle SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
+        $stmt = ($this->dbh())->prepare("UPDATE article SET name = :name, description = :description, created_at = :created_at WHERE id = :id");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':created_at', $created_at);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
         return $stmt->execute();
 
     }
