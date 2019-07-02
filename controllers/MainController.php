@@ -7,11 +7,9 @@ include(__DIR__ . '/../models/Article.php');
     public function create()
     {
         if (!isset($_POST['Name'], $_POST['Description'], $_POST['Created_at'])
-            || !($_POST['Name'] && $_POST['Description'] && $_POST['Created_at'])) {
-            ob_start();
-            include(__DIR__ . '/../views/createForm.php');
-            $result = ob_get_clean();
-            return $result;
+            || !($_POST['Name'] && $_POST['Description'] && $_POST['Created_at']))
+        {
+            return $this->render(__DIR__ . '/../views/createForm.php');
         }
 
         $model = new Article();
@@ -24,11 +22,7 @@ include(__DIR__ . '/../models/Article.php');
 
          $model = new Article();
          $articles = $model->read();
-         ob_start();
-         include(__DIR__ . '/../views/listForm.php');
-         $result = ob_get_clean();
-         return $result;
-
+         return $this->render(__DIR__ . '/../views/listForm.php', $articles);
      }
 
      public function update()
@@ -36,10 +30,7 @@ include(__DIR__ . '/../models/Article.php');
          $model = new Article();
         if (isset($_GET['id'])) {
             $item = $model->readid($_GET['id']);
-            ob_start();
-            include(__DIR__ . '/../views/updateForm.php');
-            $result = ob_get_clean();
-            return $result;
+            return $this->render(__DIR__ . '/../views/updateForm.php', $item);
         }
 
         $model->upd($_POST['Name'], $_POST['Description'], $_POST['Created_at'], $_POST['id']);
@@ -52,6 +43,14 @@ include(__DIR__ . '/../models/Article.php');
          $model = new Article();
          $model->del($_GET['id']);
          header('Location:read.php');
+     }
+
+     private function render($template, $data = null)
+     {
+         ob_start();
+         include($template);
+         $template = ob_get_clean();
+         return $template;
      }
 
  }

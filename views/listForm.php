@@ -25,7 +25,7 @@
 
         <?php
 
-        foreach($articles as $item) { ?>
+        foreach($data as $item) { ?>
 
             <tr>
 
