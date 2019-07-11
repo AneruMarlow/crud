@@ -27,6 +27,6 @@ class ControllerTest extends TestCase
     {
         $httpClient = HttpClient::create(['base_uri' => 'http://127.0.0.1:8000',]);
         $response = $httpClient->request('GET', '/delete.php');
-        $this->assertEquals($response->getStatusCode(), 302);
+        $this->assertEquals($response->getStatusCode(), 200);
     }
 }
